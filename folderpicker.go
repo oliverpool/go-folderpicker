@@ -2,6 +2,7 @@ package folderpicker
 
 import (
 	"errors"
+	"fmt"
 	"os/exec"
 	"path/filepath"
 )
@@ -26,7 +27,11 @@ func Prompt(msg string) (folder string, err error) {
 }
 
 func cleanFolder(b []byte) string {
+	fmt.Println("raw")
+	fmt.Println(string(b))
 	s := filepath.Clean(string(b))
+	fmt.Println("cleaned")
+	fmt.Println(s)
 	if s == "." {
 		return ""
 	}
