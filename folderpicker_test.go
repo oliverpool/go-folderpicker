@@ -29,6 +29,10 @@ func unixCleanFolder(t *testing.T) {
 			in:  `/unix/style/trailing/`,
 			out: `/unix/style/trailing`,
 		},
+		{
+			in:  ` /unix/style/with spaces at the end/ `,
+			out: `/unix/style/with spaces at the end`,
+		},
 	}
 
 	for _, s := range stringSet {
@@ -45,6 +49,14 @@ func windowsCleanFolder(t *testing.T) {
 		out string
 	}{
 		{},
+		{
+			in:  `\`, // Powershell selected nothing
+			out: ``,
+		},
+		{
+			in:  ` C:\Windows\Style  `, // with spaces
+			out: `C:\Windows\Style`,
+		},
 		{
 			in:  `C:\`,
 			out: `C:\`,

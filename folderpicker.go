@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"os/exec"
 	"path/filepath"
+	"strings"
 )
 
 // ErrEmptyFolderSelected indicates that the selected path is empty
@@ -29,10 +30,12 @@ func Prompt(msg string) (folder string, err error) {
 func cleanFolder(b []byte) string {
 	fmt.Println("raw")
 	fmt.Println(string(b))
-	s := filepath.Clean(string(b))
+	s := string(b)
+	s = strings.TrimSpace(s)
+	s = filepath.Clean(s)
 	fmt.Println("cleaned")
 	fmt.Println(s)
-	if s == "." {
+	if s == "." || s == `\` {
 		return ""
 	}
 	return s
