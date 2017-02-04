@@ -3,19 +3,10 @@ package folderpicker
 import (
 	"errors"
 	"fmt"
-	"os/exec"
 	"syscall"
 
 	"github.com/lxn/win"
 )
-
-func oldpickFolder(msg string) *exec.Cmd {
-	return exec.Command("powershell",
-		"-windowstyle",
-		"hidden",
-		"(new-object -COM 'Shell.Application').BrowseForFolder(0,'"+msg+"',0x1+0x100,0).self.path+'\\'",
-	)
-}
 
 func pickFolder(msg string) (folder string, err error) {
 	// Calling OleInitialize (or similar) is required for BIF_NEWDIALOGSTYLE.
