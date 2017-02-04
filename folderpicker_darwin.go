@@ -2,7 +2,7 @@ package folderpicker
 
 import "os/exec"
 
-func pickFolder(msg string) *exec.Cmd {
+func pickFolderCmd(msg string) *exec.Cmd {
 	return exec.Command("osascript",
 		"-e", "tell application \"Finder\"",
 		"-e", "activate",
@@ -10,4 +10,11 @@ func pickFolder(msg string) *exec.Cmd {
 		"-e", "end tell",
 		"-e", "return (posix path of myfolder)",
 	)
+}
+
+func pickFolder(msg string) (folder string, err error) {
+	cmd := PromptCmd(msg)
+	out, err := cmd.CombinedOutput()
+	folder, err := cleanFolder(out)
+	return
 }

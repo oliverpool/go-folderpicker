@@ -1,10 +1,6 @@
 package folderpicker
 
-import "os/exec"
-
-func pickFolder(msg string) *exec.Cmd {
+func pickFolder(msg string) (folder string, err error) {
 	// Todo (depends on desktop...)
-	return exec.Command("echo",
-		"",
-	)
+	return "", nil
 }
