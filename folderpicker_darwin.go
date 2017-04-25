@@ -13,8 +13,8 @@ func pickFolderCmd(msg string) *exec.Cmd {
 }
 
 func pickFolder(msg string) (folder string, err error) {
-	cmd := PromptCmd(msg)
+	cmd := pickFolderCmd(msg)
 	out, err := cmd.CombinedOutput()
-	folder, err := cleanFolder(out)
+	folder = string(out)
 	return
 }

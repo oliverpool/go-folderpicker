@@ -36,7 +36,7 @@ func unixCleanFolder(t *testing.T) {
 	}
 
 	for _, s := range stringSet {
-		out := cleanFolder([]byte(s.in))
+		out := cleanFolder(s.in)
 		if s.out != out {
 			t.Error("Got:", out, "Expected:", s.out)
 		}
@@ -80,7 +80,7 @@ func windowsCleanFolder(t *testing.T) {
 	}
 
 	for _, s := range stringSet {
-		out := cleanFolder([]byte(s.in))
+		out := cleanFolder(s.in)
 		if s.out != out {
 			t.Error("Got:", out, "Expected:", s.out)
 		}
